@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | TestSkyWalkers</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <h1>Student Dashboard</h1>
+      <nav>
+        <a href="/admin/admin.html">Admin Panel</a>
+        <button class="button ghost" id="logoutBtn">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="dashboard-header">
+      <h2>Available SSC Tests</h2>
+      <p>Select a shift to start your CBT-style practice.</p>
+    </section>
+
+    <section class="dashboard-grid" id="examList"></section>
+
+    <section class="dashboard-header">
+      <h2>Your Performance Snapshot</h2>
+      <p>Review your recent attempts and accuracy metrics.</p>
+    </section>
+
+    <section class="analytics-cards" id="analyticsCards"></section>
+
+    <section class="card" id="attemptDetail"></section>
+
+    <section class="card">
+      <h3>Attempt History</h3>
+      <div class="list" id="attemptList"></div>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="/js/firebase-init.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/firestore.js"></script>
+  <script src="/analytics/analytics.js"></script>
+  <script src="/auth/auth.js"></script>
+  <script src="/student/dashboard.js"></script>
+</body>
+</html>
