@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | TestSkyWalkers</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <h1>Admin Panel</h1>
+      <nav>
+        <a href="/student/dashboard.html">Student View</a>
+        <button class="button ghost" id="logoutBtn">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="dashboard-header">
+      <h2>Manage SSC Exams</h2>
+      <p>Configure exams, shifts, sections, and questions with strict CBT timing.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Create / Update Exam</h3>
+        <form id="examForm">
+          <div class="input-group">
+            <label for="examId">Exam ID (e.g. cgl_2025)</label>
+            <input id="examId" required />
+          </div>
+          <div class="input-group">
+            <label for="examName">Exam Name</label>
+            <input id="examName" required />
+          </div>
+          <button class="button" type="submit">Save Exam</button>
+          <div class="status" id="examStatus"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Create / Update Shift</h3>
+        <form id="shiftForm">
+          <div class="input-group">
+            <label for="shiftExam">Exam</label>
+            <select id="shiftExam"></select>
+          </div>
+          <div class="input-group">
+            <label for="shiftId">Shift ID (e.g. shift_1)</label>
+            <input id="shiftId" required />
+          </div>
+          <div class="input-group">
+            <label for="shiftName">Shift Name</label>
+            <input id="shiftName" required />
+          </div>
+          <div class="input-group">
+            <label for="duration">Duration (60-90 mins)</label>
+            <input id="duration" type="number" min="60" max="90" value="60" required />
+          </div>
+          <button class="button" type="submit">Save Shift</button>
+          <div class="status" id="shiftStatus"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Create / Update Section</h3>
+        <form id="sectionForm">
+          <div class="input-group">
+            <label for="sectionExam">Exam</label>
+            <select id="sectionExam"></select>
+          </div>
+          <div class="input-group">
+            <label for="sectionShift">Shift</label>
+            <select id="sectionShift"></select>
+          </div>
+          <div class="input-group">
+            <label for="sectionId">Section ID (e.g. quant)</label>
+            <input id="sectionId" required />
+          </div>
+          <div class="input-group">
+            <label for="sectionName">Section Name</label>
+            <input id="sectionName" required />
+          </div>
+          <button class="button" type="submit">Save Section</button>
+          <div class="status" id="sectionStatus"></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Upload Question</h3>
+        <form id="questionForm">
+          <div class="input-group">
+            <label for="questionExam">Exam</label>
+            <select id="questionExam"></select>
+          </div>
+          <div class="input-group">
+            <label for="questionShift">Shift</label>
+            <select id="questionShift"></select>
+          </div>
+          <div class="input-group">
+            <label for="questionSection">Section</label>
+            <select id="questionSection"></select>
+          </div>
+          <div class="input-group">
+            <label for="questionId">Question ID</label>
+            <input id="questionId" required />
+          </div>
+          <div class="input-group">
+            <label for="questionText">Question Text</label>
+            <textarea id="questionText" rows="4" required></textarea>
+          </div>
+          <div class="input-group">
+            <label>Options (A-D)</label>
+            <input id="optA" placeholder="Option A" required />
+            <input id="optB" placeholder="Option B" required />
+            <input id="optC" placeholder="Option C" required />
+            <input id="optD" placeholder="Option D" required />
+          </div>
+          <div class="input-group">
+            <label for="correct">Correct Option (A/B/C/D)</label>
+            <input id="correct" required />
+          </div>
+          <div class="input-group">
+            <label for="marks">Marks</label>
+            <input id="marks" type="number" value="2" required />
+          </div>
+          <div class="input-group">
+            <label for="negative">Negative Marks</label>
+            <input id="negative" type="number" value="0.5" required />
+          </div>
+          <div class="input-group">
+            <label for="order">Order</label>
+            <input id="order" type="number" value="1" required />
+          </div>
+          <button class="button" type="submit">Save Question</button>
+          <div class="status" id="questionStatus"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="dashboard-header">
+      <h2>Admin Analytics</h2>
+      <p>Performance overview across shifts and questions.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Average Score Per Shift</h3>
+        <canvas id="avgScoreChart" height="220"></canvas>
+      </div>
+      <div class="card">
+        <h3>Time vs Accuracy</h3>
+        <canvas id="timeAccuracyChart" height="220"></canvas>
+      </div>
+      <div class="card">
+        <h3>Question Difficulty Index</h3>
+        <div class="list" id="difficultyList"></div>
+      </div>
+      <div class="card">
+        <h3>Attempt Distribution</h3>
+        <canvas id="attemptDistributionChart" height="220"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="/js/firebase-init.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/firestore.js"></script>
+  <script src="/auth/auth.js"></script>
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
