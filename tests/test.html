@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SSC Test | TestSkyWalkers</title>
+  <link rel="stylesheet" href="/css/base.css" />
+  <link rel="stylesheet" href="/css/test.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-content">
+      <h1>SSC CBT Test</h1>
+      <div class="timer" id="timer">60:00</div>
+    </div>
+  </header>
+
+  <main class="container test-layout">
+    <aside class="card">
+      <h3>Question Palette</h3>
+      <div class="palette" id="palette"></div>
+      <div class="status" id="saveStatus"></div>
+    </aside>
+
+    <section class="card question-card">
+      <div>
+        <span class="badge" id="sectionLabel">Section</span>
+        <h2 id="questionText">Loading question...</h2>
+      </div>
+      <div class="options" id="options"></div>
+      <div class="test-actions">
+        <button class="button ghost" id="markReview">Mark for Review</button>
+        <div>
+          <button class="button ghost" id="prevBtn">Previous</button>
+          <button class="button" id="nextBtn">Save & Next</button>
+        </div>
+        <button class="button" id="submitBtn">Submit Test</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="/js/firebase-init.js"></script>
+  <script src="/js/utils.js"></script>
+  <script src="/js/firestore.js"></script>
+  <script src="/analytics/analytics.js"></script>
+  <script src="/auth/auth.js"></script>
+  <script src="/tests/timer.js"></script>
+  <script src="/tests/test-engine.js"></script>
+</body>
+</html>
