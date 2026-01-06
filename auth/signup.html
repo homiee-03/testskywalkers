@@ -41,24 +41,5 @@
   <script src="/js/utils.js"></script>
   <script src="/js/firestore.js"></script>
   <script src="/auth/auth.js"></script>
-  <script>
-    const form = document.getElementById("signupForm");
-    const status = document.getElementById("status");
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      ui.showStatus(status, "Creating your account...");
-      try {
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        await authApi.signup({ name, email, password });
-        ui.showStatus(status, "Account created! Redirecting...", "success");
-        window.location.href = "/student/dashboard.html";
-      } catch (error) {
-        ui.showStatus(status, error.message, "error");
-      }
-    });
-  </script>
 </body>
 </html>

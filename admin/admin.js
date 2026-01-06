@@ -1,11 +1,5 @@
 authApi.requireAuth({ role: "admin" });
 
-const logoutBtn = document.getElementById("logoutBtn");
-logoutBtn.addEventListener("click", async () => {
-  await authApi.logout();
-  window.location.href = "/index.html";
-});
-
 const examForm = document.getElementById("examForm");
 const shiftForm = document.getElementById("shiftForm");
 const sectionForm = document.getElementById("sectionForm");

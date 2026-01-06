@@ -4,13 +4,6 @@ const examList = document.getElementById("examList");
 const analyticsCards = document.getElementById("analyticsCards");
 const attemptList = document.getElementById("attemptList");
 const attemptDetail = document.getElementById("attemptDetail");
-const logoutBtn = document.getElementById("logoutBtn");
-
-logoutBtn.addEventListener("click", async () => {
-  await authApi.logout();
-  window.location.href = "/index.html";
-});
-
 async function renderExams() {
   const exams = await firestoreApi.getExams();
   if (!exams.length) {

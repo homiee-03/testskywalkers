@@ -37,24 +37,5 @@
   <script src="/js/utils.js"></script>
   <script src="/js/firestore.js"></script>
   <script src="/auth/auth.js"></script>
-  <script>
-    const form = document.getElementById("loginForm");
-    const status = document.getElementById("status");
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      ui.showStatus(status, "Signing you in...");
-      try {
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        const user = await authApi.login({ email, password });
-        const role = await authApi.fetchRole(user.uid);
-        ui.showStatus(status, "Login successful! Redirecting...", "success");
-        window.location.href = role === "admin" ? "/admin/admin.html" : "/student/dashboard.html";
-      } catch (error) {
-        ui.showStatus(status, error.message, "error");
-      }
-    });
-  </script>
 </body>
 </html>

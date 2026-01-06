@@ -56,21 +56,5 @@
   <script src="/js/firebase-init.js"></script>
   <script src="/js/firestore.js"></script>
   <script src="/auth/auth.js"></script>
-  <script>
-    const loggedOutLinks = document.getElementById("loggedOutLinks");
-    const loggedInLinks = document.getElementById("loggedInLinks");
-    const logoutBtn = document.getElementById("logoutBtn");
-
-    authApi.onAuthChange((user) => {
-      const isLoggedIn = Boolean(user);
-      loggedOutLinks.hidden = isLoggedIn;
-      loggedInLinks.hidden = !isLoggedIn;
-    });
-
-    logoutBtn.addEventListener("click", async () => {
-      await authApi.logout();
-      window.location.reload();
-    });
-  </script>
 </body>
 </html>
